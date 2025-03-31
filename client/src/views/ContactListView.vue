@@ -22,7 +22,7 @@ const fetchContacts = async () => {
 }
 
 const filteredContacts = computed(() => {
-  const searchQuery = store.getters.searchQuery // Use getter for search query
+  const searchQuery = store.getters.searchQuery
   if (!searchQuery) return contacts.value
   return contacts.value.filter(contact =>
     `${contact.firstName} ${contact.lastName}`.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -32,8 +32,8 @@ const filteredContacts = computed(() => {
 })
 
 const openAddContactDialog = () => {
-  store.commit('setEditableContact', null) // Clear the editableContact in the store
-  store.dispatch('openDialog', false) // Open dialog in add mode
+  store.commit('setEditableContact', null)
+  store.dispatch('openDialog', false)
 }
 
 onMounted(() => {
@@ -44,9 +44,9 @@ const handleContactAdded = async (newContact) => {
   try {
     const response = await axios.post('http://localhost:3000/contacts', newContact)
     if (response.status === 201) {
-      contacts.value.push(response.data) // Add the new contact to the local state
+      contacts.value.push(response.data)
       fetchContacts()
-      store.dispatch('closeDialog') // Close the dialog using the store
+      store.dispatch('closeDialog')
     } else {
       console.error('Failed to add contact:', response.statusText)
     }
@@ -58,7 +58,7 @@ const handleContactAdded = async (newContact) => {
 const handleContactEdited = (updatedContact) => {
   const index = contacts.value.findIndex(contact => contact._id === updatedContact._id)
   if (index !== -1) {
-    contacts.value.splice(index, 1, updatedContact) // Update the contact in the local state
+    contacts.value.splice(index, 1, updatedContact)
   }
 }
 

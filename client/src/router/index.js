@@ -18,19 +18,19 @@ const router = createRouter({
       path: '/contacts',
       name: 'contacts',
       component: ContactListView,
-      meta: { requiresAuth: true }, // Mark this route as requiring authentication
+      meta: { requiresAuth: true },
     },
   ],
 })
 
 router.beforeEach((to, from, next) => {
   if (to.name === 'login') {
-    localStorage.removeItem('authToken') // Remove authToken when navigating to login
+    localStorage.removeItem('authToken') 
   }
   if (to.meta.requiresAuth && !isAuthenticated()) {
-    next({ name: 'login' }) // Redirect to login if not authenticated
+    next({ name: 'login' }) 
   } else {
-    next() // Proceed to the route
+    next() 
   }
 })
 

@@ -1,6 +1,6 @@
 <script setup>
 import Background from '@/components/Background.vue';
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
