@@ -20,10 +20,6 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
 
-const props = defineProps({
-  isOpen: Boolean,
-})
-
 const emit = defineEmits(['close'])
 
 const closeDialog = () => {
